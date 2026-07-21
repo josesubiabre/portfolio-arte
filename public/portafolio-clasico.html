@@ -1,0 +1,403 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>José Subiabre — Portafolio</title>
+
+<style>
+  :root {
+    --fondo: #F7F7F5;
+    --superficie: #FFFFFF;
+    --tinta: #14171C;
+    --meta: #70777F;
+    --linea: #E3E4DF;
+    --acento: #1D3FBF;
+    --acento-tinta: #FFFFFF;
+    --display: "Didot", "Bodoni MT", "Playfair Display", Georgia, "Times New Roman", serif;
+    --cuerpo: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fondo: #0E1116;
+      --superficie: #161A21;
+      --tinta: #EDEEEA;
+      --meta: #8B929B;
+      --linea: #262B33;
+      --acento: #7A93FF;
+      --acento-tinta: #0E1116;
+    }
+  }
+  :root[data-theme="light"] {
+    --fondo: #F7F7F5; --superficie: #FFFFFF; --tinta: #14171C; --meta: #70777F;
+    --linea: #E3E4DF; --acento: #1D3FBF; --acento-tinta: #FFFFFF;
+  }
+  :root[data-theme="dark"] {
+    --fondo: #0E1116; --superficie: #161A21; --tinta: #EDEEEA; --meta: #8B929B;
+    --linea: #262B33; --acento: #7A93FF; --acento-tinta: #0E1116;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--tinta);
+    font-family: var(--cuerpo);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+
+  .contenedor { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- Cabecera ---- */
+  header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 28px 0 0;
+  }
+  .marca {
+    font-family: var(--display);
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+  }
+  nav { display: flex; gap: 28px; }
+  nav a {
+    text-decoration: none;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--meta);
+  }
+  nav a:hover, nav a:focus-visible { color: var(--acento); }
+
+  /* ---- Hero ---- */
+  .hero { padding: 96px 0 72px; border-bottom: 1px solid var(--linea); }
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 7vw, 5.4rem);
+    line-height: 1.04;
+    margin: 0 0 28px;
+    text-wrap: balance;
+    max-width: 14em;
+  }
+  .hero h1 em { color: var(--acento); font-style: italic; }
+  .hero p {
+    max-width: 34em;
+    color: var(--meta);
+    font-size: 1.05rem;
+    margin: 0;
+  }
+
+  /* ---- Filtros ---- */
+  .filtros {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    padding: 40px 0 32px;
+  }
+  .filtros button {
+    font: inherit;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    background: none;
+    border: 1px solid var(--linea);
+    border-radius: 999px;
+    color: var(--meta);
+    padding: 8px 18px;
+    cursor: pointer;
+  }
+  .filtros button:hover { border-color: var(--acento); color: var(--acento); }
+  .filtros button[aria-pressed="true"] {
+    background: var(--acento);
+    border-color: var(--acento);
+    color: var(--acento-tinta);
+  }
+
+  /* ---- Galería ---- */
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    padding-bottom: 96px;
+  }
+  .obra {
+    grid-column: span 2;
+    cursor: pointer;
+    border: none; background: none; padding: 0; font: inherit;
+    color: inherit; text-align: left;
+  }
+  .obra.ancha { grid-column: span 4; }
+  .obra .marco {
+    position: relative;
+    background: var(--superficie);
+    border: 1px solid var(--linea);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .obra.alta .marco { aspect-ratio: 3 / 4; }
+  .obra .marco img, .obra .marco canvas, .obra .marco video {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .obra:hover .marco, .obra:focus-visible .marco { border-color: var(--acento); }
+  .obra:focus-visible { outline: 2px solid var(--acento); outline-offset: 4px; }
+  .obra figure { margin: 0; }
+  .obra figcaption { padding: 10px 2px 0; }
+  .obra .titulo { font-family: var(--display); font-size: 1.02rem; }
+  .obra .datos {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--meta);
+    margin-top: 2px;
+  }
+  .insignia-video {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    pointer-events: none;
+  }
+  .insignia-video span {
+    width: 54px; height: 54px; border-radius: 50%;
+    background: color-mix(in srgb, var(--fondo) 82%, transparent);
+    display: grid; place-items: center;
+    font-size: 1.1rem;
+  }
+
+  /* ---- Lightbox ---- */
+  dialog.lightbox {
+    border: none; padding: 0; background: var(--fondo); color: var(--tinta);
+    width: min(92vw, 980px); max-height: 90vh;
+  }
+  dialog.lightbox::backdrop { background: rgba(10, 12, 16, 0.82); }
+  .lightbox .medio { background: var(--superficie); }
+  .lightbox .medio img, .lightbox .medio canvas, .lightbox .medio video {
+    width: 100%; max-height: 68vh; object-fit: contain; display: block;
+  }
+  .lightbox .ficha {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 16px; padding: 16px 20px;
+  }
+  .lightbox .cerrar {
+    font: inherit; font-size: 0.78rem; text-transform: uppercase;
+    letter-spacing: 0.14em; background: none; border: none;
+    color: var(--meta); cursor: pointer; padding: 4px;
+  }
+  .lightbox .cerrar:hover { color: var(--acento); }
+
+  /* ---- Sobre mí / contacto ---- */
+  .seccion { border-top: 1px solid var(--linea); padding: 72px 0; }
+  .seccion h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 1.9rem;
+    margin: 0 0 20px;
+  }
+  .seccion p { max-width: 38em; color: var(--meta); }
+  .contacto a { color: var(--acento); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  footer {
+    border-top: 1px solid var(--linea);
+    padding: 24px 0 40px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--meta);
+  }
+
+  @media (max-width: 760px) {
+    .galeria { grid-template-columns: 1fr 1fr; }
+    .obra, .obra.ancha { grid-column: span 2; }
+    .hero { padding: 64px 0 48px; }
+    header { flex-direction: column; gap: 12px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .obra .marco img, .obra .marco canvas { transition: transform 0.5s ease; }
+    .obra:hover .marco img, .obra:hover .marco canvas { transform: scale(1.03); }
+  }
+</style>
+
+<div class="contenedor">
+  <header>
+    <div class="marca">José Subiabre</div>
+    <nav>
+      <a href="#obras">Obras</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Fotografía, video y pintura desde el <em>sur del mundo</em>.</h1>
+    <p>
+      Una selección de trabajos personales: imágenes fijas, piezas en movimiento
+      y obra sobre tela. Cada pieza abre en grande al hacer clic.
+    </p>
+  </section>
+
+  <div class="filtros" id="obras" role="group" aria-label="Filtrar obras">
+    <button data-filtro="todo" aria-pressed="true">Todo</button>
+    <button data-filtro="foto" aria-pressed="false">Fotografía</button>
+    <button data-filtro="video" aria-pressed="false">Video</button>
+    <button data-filtro="pintura" aria-pressed="false">Pintura</button>
+  </div>
+
+  <div class="galeria" id="galeria"></div>
+
+  <section class="seccion" id="sobre-mi">
+    <h2>Sobre mí</h2>
+    <p>
+      Escribe aquí tu biografía de artista: quién eres, qué temas exploras,
+      dónde has expuesto. Dos o tres frases honestas funcionan mejor que un
+      currículum completo.
+    </p>
+  </section>
+
+  <section class="seccion contacto" id="contacto">
+    <h2>Contacto</h2>
+    <p>
+      Para encargos, ventas o exposiciones:
+      <a href="mailto:subiabreji@gmail.com">subiabreji@gmail.com</a>
+    </p>
+  </section>
+
+  <footer>© 2026 José Subiabre — Todas las obras son propiedad del autor.</footer>
+</div>
+
+<dialog class="lightbox" id="lightbox">
+  <div class="medio" id="lightbox-medio"></div>
+  <div class="ficha">
+    <div>
+      <div class="titulo" id="lightbox-titulo" style="font-family: var(--display); font-size: 1.2rem;"></div>
+      <div class="datos" id="lightbox-datos" style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--meta);"></div>
+    </div>
+    <button class="cerrar" id="lightbox-cerrar">Cerrar ✕</button>
+  </div>
+</dialog>
+
+<script>
+  // ============================================================
+  // TUS OBRAS — edita solo esta lista.
+  //
+  // Para añadir una obra: copia una línea, cambia los datos y pon
+  // tu archivo en la carpeta "obras/" (junto a este index.html).
+  //   src: "obras/mi-foto.jpg"  → imagen (fotografía o cuadro)
+  //   src: "obras/mi-video.mp4" → video
+  // Si dejas src: null, se muestra un placeholder generado.
+  //
+  // categoria: "foto" | "video" | "pintura"
+  // forma: "" (normal) | "ancha" | "alta"  (tamaño en la retícula)
+  // ============================================================
+  const OBRAS = [
+    { titulo: "Costa en invierno",   categoria: "foto",    anio: 2025, tecnica: "Fotografía digital",   forma: "ancha", src: null },
+    { titulo: "Retrato nº 1",        categoria: "foto",    anio: 2024, tecnica: "Fotografía analógica", forma: "alta",  src: null },
+    { titulo: "Marea",               categoria: "video",   anio: 2025, tecnica: "Video, 3 min",         forma: "",      src: null },
+    { titulo: "Campo azul",          categoria: "pintura", anio: 2023, tecnica: "Óleo sobre tela",      forma: "",      src: null },
+    { titulo: "Estudio de luz",      categoria: "foto",    anio: 2024, tecnica: "Fotografía digital",   forma: "",      src: null },
+    { titulo: "Ciudad que respira",  categoria: "video",   anio: 2024, tecnica: "Video, 6 min",         forma: "ancha", src: null },
+    { titulo: "Sin título (rojo)",   categoria: "pintura", anio: 2025, tecnica: "Acrílico sobre madera", forma: "alta", src: null },
+    { titulo: "Niebla",              categoria: "foto",    anio: 2023, tecnica: "Fotografía analógica", forma: "",      src: null },
+    { titulo: "Horizonte partido",   categoria: "pintura", anio: 2024, tecnica: "Técnica mixta",        forma: "",     src: null },
+  ];
+
+  const NOMBRES = { foto: "Fotografía", video: "Video", pintura: "Pintura" };
+
+  // Placeholder generativo: pinta una composición abstracta determinista
+  // por obra, con paletas distintas según la categoría.
+  function pintarPlaceholder(canvas, obra, indice) {
+    const ctx = canvas.getContext("2d");
+    const w = canvas.width = 800, h = canvas.height = 600;
+    let semilla = 0;
+    for (const c of obra.titulo) semilla = (semilla * 31 + c.charCodeAt(0)) % 100000;
+    const azar = () => { semilla = (semilla * 9301 + 49297) % 233280; return semilla / 233280; };
+
+    const paletas = {
+      foto:    ["#3E4753", "#8C97A3", "#D8DCE0", "#1D3FBF"],
+      video:   ["#22262E", "#4A5568", "#B7BEC9", "#1D3FBF"],
+      pintura: ["#B3B9C7", "#5E6B8C", "#E4E1D8", "#1D3FBF"],
+    };
+    const paleta = paletas[obra.categoria];
+
+    ctx.fillStyle = paleta[2];
+    ctx.fillRect(0, 0, w, h);
+    const formas = 5 + Math.floor(azar() * 5);
+    for (let i = 0; i < formas; i++) {
+      ctx.fillStyle = paleta[Math.floor(azar() * paleta.length)];
+      ctx.globalAlpha = 0.55 + azar() * 0.4;
+      if (azar() > 0.5) {
+        ctx.beginPath();
+        ctx.arc(azar() * w, azar() * h, 40 + azar() * 180, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.fillRect(azar() * w, azar() * h, 60 + azar() * 300, 40 + azar() * 220);
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function crearMedio(obra, indice, esLightbox) {
+    if (obra.src && obra.categoria === "video") {
+      const video = document.createElement("video");
+      video.src = obra.src;
+      if (esLightbox) { video.controls = true; }
+      else { video.muted = true; video.loop = true; video.playsInline = true; video.autoplay = true; }
+      return video;
+    }
+    if (obra.src) {
+      const img = document.createElement("img");
+      img.src = obra.src;
+      img.alt = obra.titulo;
+      img.loading = "lazy";
+      return img;
+    }
+    const canvas = document.createElement("canvas");
+    canvas.setAttribute("role", "img");
+    canvas.setAttribute("aria-label", obra.titulo + " (imagen pendiente)");
+    pintarPlaceholder(canvas, obra, indice);
+    return canvas;
+  }
+
+  const galeria = document.getElementById("galeria");
+  const lightbox = document.getElementById("lightbox");
+
+  function renderizar(filtro) {
+    galeria.innerHTML = "";
+    OBRAS.forEach((obra, indice) => {
+      if (filtro !== "todo" && obra.categoria !== filtro) return;
+      const boton = document.createElement("button");
+      boton.className = "obra " + obra.forma;
+      boton.innerHTML =
+        '<figure><div class="marco"></div>' +
+        '<figcaption><div class="titulo"></div><div class="datos"></div></figcaption></figure>';
+      boton.querySelector(".marco").appendChild(crearMedio(obra, indice, false));
+      if (obra.categoria === "video" && !obra.src) {
+        const insignia = document.createElement("div");
+        insignia.className = "insignia-video";
+        insignia.innerHTML = "<span>▶</span>";
+        boton.querySelector(".marco").appendChild(insignia);
+      }
+      boton.querySelector(".titulo").textContent = obra.titulo;
+      boton.querySelector(".datos").textContent =
+        NOMBRES[obra.categoria] + " · " + obra.tecnica + " · " + obra.anio;
+      boton.addEventListener("click", () => abrirLightbox(obra, indice));
+      galeria.appendChild(boton);
+    });
+  }
+
+  function abrirLightbox(obra, indice) {
+    const medio = document.getElementById("lightbox-medio");
+    medio.innerHTML = "";
+    medio.appendChild(crearMedio(obra, indice, true));
+    document.getElementById("lightbox-titulo").textContent = obra.titulo;
+    document.getElementById("lightbox-datos").textContent =
+      NOMBRES[obra.categoria] + " · " + obra.tecnica + " · " + obra.anio;
+    lightbox.showModal();
+  }
+
+  document.getElementById("lightbox-cerrar").addEventListener("click", () => lightbox.close());
+  lightbox.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.close(); });
+
+  document.querySelectorAll(".filtros button").forEach((boton) => {
+    boton.addEventListener("click", () => {
+      document.querySelectorAll(".filtros button").forEach((b) => b.setAttribute("aria-pressed", "false"));
+      boton.setAttribute("aria-pressed", "true");
+      renderizar(boton.dataset.filtro);
+    });
+  });
+
+  renderizar("todo");
+</script>
