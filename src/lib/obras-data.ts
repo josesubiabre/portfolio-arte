@@ -2,10 +2,7 @@
 // Añade o quita líneas aquí y todas las vistas se actualizan.
 export const IMAGES = [
     "main/Farellones.jpg",
-    "main/Flores_Recicladas.jpg",
     "main/Formigal.jpg",
-    "main/La_Parva_Japan.jpg",
-    "main/La_Reina_De_Babilonia.jpg",
     "main/Lagos_Auto.jpg",
     "main/Madrid_Manuel_Becerra.jpg",
     "main/Madrid_Retiro.jpg",
