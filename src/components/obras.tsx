@@ -10,18 +10,18 @@ const items: Gallery4Item[] = [
   {
     id: "tokyo-afterglow",
     title: "tokyo afterglow",
-    description: "JOTD",
+    description: "JOTD · an AI music project",
     href: "works/tokyo_afterglow.png",
     image: "works/tokyo_afterglow.png",
-    spotify: "https://open.spotify.com/album/0EvRNQW89ciMf4Av9i9brh", // pega aquí el enlace de Spotify de la canción
+    spotify: "https://open.spotify.com/album/0EvRNQW89ciMf4Av9i9brh",
   },
   {
     id: "perdidos",
     title: "perdidos",
-    description: "JOTD",
+    description: "JOTD · an AI music project",
     href: "works/perdidos.png",
     image: "works/perdidos.png",
-    spotify: "https://open.spotify.com/album/4FmkRi1IEvt3G0PX7i2oaA", // pega aquí el enlace de Spotify de la canción
+    spotify: "https://open.spotify.com/album/4FmkRi1IEvt3G0PX7i2oaA",
   },
 ];
 
@@ -90,7 +90,14 @@ export default function Obras() {
               )}
 
               <figcaption className="mt-3 flex items-baseline justify-between gap-4 text-white">
-                <span className="text-sm font-medium">{selected.title}</span>
+                <span className="flex flex-col">
+                  <span className="text-sm font-medium">{selected.title}</span>
+                  {selected.description && (
+                    <span className="text-xs text-white/60">
+                      {selected.description}
+                    </span>
+                  )}
+                </span>
                 <button
                   onClick={() => setSelected(null)}
                   className="text-xs uppercase tracking-[0.14em] text-white/70 transition-colors hover:text-white"
