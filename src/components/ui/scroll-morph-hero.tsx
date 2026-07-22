@@ -459,6 +459,30 @@ export default function IntroAnimation() {
                                 </button>
                             </figcaption>
                         </motion.figure>
+
+                        {/* Zonas táctiles en los bordes: anterior / siguiente */}
+                        <button
+                            type="button"
+                            aria-label="Previous photo"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setSelected((selected - 1 + TOTAL_IMAGES) % TOTAL_IMAGES);
+                            }}
+                            className="absolute inset-y-0 left-0 z-10 flex w-[18%] max-w-28 items-center justify-start pl-2 text-white/40 transition-colors hover:text-white active:text-white md:pl-4"
+                        >
+                            <span className="text-4xl leading-none">‹</span>
+                        </button>
+                        <button
+                            type="button"
+                            aria-label="Next photo"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setSelected((selected + 1) % TOTAL_IMAGES);
+                            }}
+                            className="absolute inset-y-0 right-0 z-10 flex w-[18%] max-w-28 items-center justify-end pr-2 text-white/40 transition-colors hover:text-white active:text-white md:pr-4"
+                        >
+                            <span className="text-4xl leading-none">›</span>
+                        </button>
                     </motion.div>
                 )}
             </AnimatePresence>
