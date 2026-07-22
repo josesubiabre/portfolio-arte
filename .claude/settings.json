@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\"c:\\\\Users\\\\subia\\\\Desktop\\\\portfolio-arte\\\\public\\\\works\\\\La_Reina_De_Babilonia.jpg\"\\); \"$\\($img.Width\\) x $\\($img.Height\\)\"; $img.Dispose\\(\\))"
+    ]
+  }
+}

@@ -41,8 +41,8 @@ const items: Gallery4Item[] = [
     id: "la-reina-de-babilonia",
     title: "la reina de babilonia",
     description: "digital collage",
-    href: "works/La_Reina_De_Babilonia.jpg?v=2",
-    image: "works/La_Reina_De_Babilonia.jpg?v=2",
+    href: "works/La_Reina_De_Babilonia.jpg?v=3",
+    image: "works/La_Reina_De_Babilonia.jpg?v=3",
   },
 ];
 

@@ -31,7 +31,8 @@ const ELSEWHERE = [
   },
   {
     source: "City Tour",
-    description: "a short interview before presenting my thesis project.",
+    description:
+      "a short interview before presenting my thesis project (interview at 12:30).",
     label: "watch video",
     href: "https://www.facebook.com/watch/?v=314418786034435&t=750",
   },
