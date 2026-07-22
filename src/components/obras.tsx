@@ -23,6 +23,27 @@ const items: Gallery4Item[] = [
     image: "works/perdidos.png",
     spotify: "https://open.spotify.com/album/4FmkRi1IEvt3G0PX7i2oaA",
   },
+  {
+    id: "la-parva-japan",
+    title: "la parva",
+    description: "edited photograph",
+    href: "works/La_Parva_Japan.jpg",
+    image: "works/La_Parva_Japan.jpg",
+  },
+  {
+    id: "flores-recicladas",
+    title: "flores recicladas",
+    description: "digital collage",
+    href: "works/Flores_Recicladas.jpg",
+    image: "works/Flores_Recicladas.jpg",
+  },
+  {
+    id: "la-reina-de-babilonia",
+    title: "la reina de babilonia",
+    description: "digital collage",
+    href: "works/La_Reina_De_Babilonia.jpg",
+    image: "works/La_Reina_De_Babilonia.jpg",
+  },
 ];
 
 export default function Obras() {
