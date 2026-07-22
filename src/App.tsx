@@ -26,7 +26,7 @@ export default function App() {
       }
     >
       {/* Cabecera superpuesta */}
-      <header className="absolute inset-x-0 top-0 z-20 flex items-baseline justify-between px-6 py-6 md:px-10">
+      <header className="absolute inset-x-0 top-0 z-20 flex flex-col items-center gap-2 px-6 py-5 md:flex-row md:items-baseline md:justify-between md:px-10 md:py-6">
         <a
           href="#inicio"
           className="font-serif text-lg lowercase tracking-wide text-gray-900 no-underline"
