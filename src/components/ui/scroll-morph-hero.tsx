@@ -110,6 +110,9 @@ export default function IntroAnimation() {
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key === "Escape") setSelected(null);
+            if (selectedRef.current === null) return;
+            if (e.key === "ArrowRight") setSelected((selectedRef.current + 1) % TOTAL_IMAGES);
+            if (e.key === "ArrowLeft") setSelected((selectedRef.current - 1 + TOTAL_IMAGES) % TOTAL_IMAGES);
         };
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
@@ -148,12 +151,28 @@ export default function IntroAnimation() {
         const container = containerRef.current;
         if (!container) return;
 
+        // Acumulador y cooldown para navegar entre fotos en la vista expandida
+        let wheelAcc = 0;
+        let lastNavTime = 0;
+
         const handleWheel = (e: WheelEvent) => {
             // Prevent default to stop browser overscroll/bounce
             e.preventDefault();
 
-            // Pause virtual scroll while an image is expanded
-            if (selectedRef.current !== null) return;
+            // While an image is expanded, horizontal scroll navigates between photos
+            if (selectedRef.current !== null) {
+                const now = performance.now();
+                if (now - lastNavTime < 400) return; // ignora la inercia del trackpad
+                wheelAcc += Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+                if (Math.abs(wheelAcc) > 100) {
+                    const dir = wheelAcc > 0 ? 1 : -1;
+                    wheelAcc = 0;
+                    lastNavTime = now;
+                    setSelected((selectedRef.current + dir + TOTAL_IMAGES) % TOTAL_IMAGES);
+                }
+                return;
+            }
+            wheelAcc = 0;
 
             const newScroll = Math.min(Math.max(scrollRef.current + e.deltaY, 0), MAX_SCROLL);
             scrollRef.current = newScroll;
@@ -162,15 +181,30 @@ export default function IntroAnimation() {
 
         // Touch support
         let touchStartY = 0;
+        let touchStartX = 0;
+        let swipeHandled = false;
         const handleTouchStart = (e: TouchEvent) => {
             touchStartY = e.touches[0].clientY;
+            touchStartX = e.touches[0].clientX;
+            swipeHandled = false;
         };
         const handleTouchMove = (e: TouchEvent) => {
+            // While an image is expanded, a horizontal swipe navigates between photos
+            if (selectedRef.current !== null) {
+                e.preventDefault();
+                if (swipeHandled) return;
+                const deltaX = e.touches[0].clientX - touchStartX;
+                if (Math.abs(deltaX) > 60) {
+                    swipeHandled = true; // una navegación por gesto
+                    const dir = deltaX < 0 ? 1 : -1; // swipe a la izquierda → siguiente
+                    setSelected((selectedRef.current + dir + TOTAL_IMAGES) % TOTAL_IMAGES);
+                }
+                return;
+            }
+
             const touchY = e.touches[0].clientY;
             const deltaY = touchStartY - touchY;
             touchStartY = touchY;
-
-            if (selectedRef.current !== null) return;
 
             const newScroll = Math.min(Math.max(scrollRef.current + deltaY, 0), MAX_SCROLL);
             scrollRef.current = newScroll;
@@ -399,9 +433,13 @@ export default function IntroAnimation() {
                             onClick={(e) => e.stopPropagation()}
                             className="relative m-0 max-h-full max-w-full cursor-default"
                         >
-                            <img
+                            <motion.img
+                                key={selected}
                                 src={IMAGES[selected]}
                                 alt={titleFromSrc(IMAGES[selected])}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.2 }}
                                 className="max-h-[80vh] max-w-full rounded-2xl object-contain shadow-2xl"
                             />
                             <figcaption className="mt-3 flex items-baseline justify-between gap-4 text-white">
