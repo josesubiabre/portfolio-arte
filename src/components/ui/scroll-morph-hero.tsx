@@ -89,32 +89,41 @@ function FlipCard({
 }
 
 // --- Main Hero Component ---
-const TOTAL_IMAGES = 20;
 const MAX_SCROLL = 3000; // Virtual scroll range
 
-// Unsplash Images
+// Obras (public/obras/)
 const IMAGES = [
-    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=300&q=80",
-    "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=300&q=80",
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?w=300&q=80",
-    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=300&q=80",
-    "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=300&q=80",
-    "https://images.unsplash.com/photo-1506765515384-028b60a970df?w=300&q=80",
-    "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&q=80",
-    "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=300&q=80",
-    "https://images.unsplash.com/photo-1500485035595-cbe6f645feb1?w=300&q=80",
-    "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&q=80",
-    "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=300&q=80",
-    "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=300&q=80",
-    "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=300&q=80",
-    "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=300&q=80",
-    "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=300&q=80",
-    "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=300&q=80",
-    "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=300&q=80",
-    "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=300&q=80",
-    "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?w=300&q=80",
-    "https://images.unsplash.com/photo-1496568816309-51d7c20e3b21?w=300&q=80",
+    "obras/Flores_Recicladas.jpg",
+    "obras/Formigal.jpg",
+    "obras/Golden_Gate_Heights.jpg",
+    "obras/Gran_Canaria.jpg",
+    "obras/La_Parva_Japan.jpg",
+    "obras/La_Reina_De_Babilonia.jpg",
+    "obras/Lagos_Auto.jpg",
+    "obras/Madrid_Manuel_Becerra.jpg",
+    "obras/Madrid_Retiro.jpg",
+    "obras/Mendocino_Fungi.jpg",
+    "obras/Morocco_Fruits.jpg",
+    "obras/Morocco_Jars.jpg",
+    "obras/Morocco_Marrakesh.jpg",
+    "obras/Morocco_Marrakesh_Inside.jpg",
+    "obras/Morocco_Merzouga.jpg",
+    "obras/Morocco_Moto.jpg",
+    "obras/Morocco_Pray.jpg",
+    "obras/Morocco_Sahara.jpg",
+    "obras/Papa_Muir_Woods.jpg",
+    "obras/San_Francisco_Marina.jpg",
+    "obras/San_Francisco_Marina_dia.jpg",
+    "obras/Tambo.jpg",
+    "obras/Tenerife_Airport.jpg",
+    "obras/Tenerife_Los_Gigantes.jpg",
 ];
+
+const TOTAL_IMAGES = IMAGES.length;
+
+// "obras/La_Reina_De_Babilonia.jpg" -> "La Reina De Babilonia"
+const titleFromSrc = (src: string) =>
+    src.split("/").pop()!.replace(/\.[^.]+$/, "").replace(/_/g, " ");
 
 // Helper for linear interpolation
 const lerp = (start: number, end: number, t: number) => start * (1 - t) + end * t;
@@ -424,13 +433,13 @@ export default function IntroAnimation() {
                             className="relative m-0 max-h-full max-w-full cursor-default"
                         >
                             <img
-                                src={IMAGES[selected].replace("w=300", "w=1200")}
-                                alt={`obra-${selected}`}
+                                src={IMAGES[selected]}
+                                alt={titleFromSrc(IMAGES[selected])}
                                 className="max-h-[80vh] max-w-full rounded-2xl object-contain shadow-2xl"
                             />
                             <figcaption className="mt-3 flex items-baseline justify-between gap-4 text-white">
                                 <span className="text-sm font-medium">
-                                    Obra {selected + 1}
+                                    {titleFromSrc(IMAGES[selected])}
                                     <span className="ml-2 text-xs uppercase tracking-[0.14em] text-white/50">
                                         {selected + 1} / {TOTAL_IMAGES}
                                     </span>
