@@ -15,7 +15,7 @@ const PARRAFOS = [
 //   vertical:   "top"  | "center" | "bottom" | porcentaje ("20%")
 // "50% 50%" es el centro exacto. Si se omite, queda centrada.
 const FOTOS = [
-  { src: "perfil/perfil.jpg", alt: "Retrato de José Subiabre", posicion: "center top" },
+  { src: "perfil/perfil.jpg", alt: "Retrato de José Subiabre", posicion: "center center" },
   { src: "perfil/Tambo_Ranco.jpg", alt: "Tambo en el lago Ranco", posicion: "center center" },
   { src: "perfil/Tambo_Sleepy.jpg", alt: "Tambo durmiendo", posicion: "center center" },
 ];
