@@ -59,20 +59,19 @@ const Gallery4 = ({
   return (
     <section className="py-32">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 grid grid-cols-1 gap-6 md:mb-14 lg:mb-16 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-2">
+        <div className="mb-8 flex items-end justify-between gap-4 md:mb-14 lg:mb-16">
+          <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <h2 className="font-serif text-xl lowercase tracking-tight text-black sm:text-2xl">
                 {title}
               </h2>
               <ArrowDown className="h-5 w-5 text-black" strokeWidth={1.5} />
             </div>
-          </div>
-          <div className="flex items-start justify-between gap-4 lg:col-span-10">
             <p className="max-w-lg text-sm leading-relaxed text-gray-700">
               {description}
             </p>
-            <div className="hidden shrink-0 gap-2 md:flex">
+          </div>
+          <div className="hidden shrink-0 gap-2 md:flex">
             <Button
               size="icon"
               variant="ghost"
@@ -95,7 +94,6 @@ const Gallery4 = ({
             >
               <ArrowRight className="size-5" />
             </Button>
-            </div>
           </div>
         </div>
       </div>
