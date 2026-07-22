@@ -12,9 +12,10 @@ export default function App() {
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
-  // #obras (y la URL sin hash) es la página principal; el hero queda en #inicio
+  // La página principal (sin hash o #inicio) es el hero animado;
+  // #obras muestra la galería carrusel y #sobre-mi la biografía
   const vista =
-    hash === "#sobre-mi" ? "sobre-mi" : hash === "#inicio" ? "inicio" : "obras";
+    hash === "#sobre-mi" ? "sobre-mi" : hash === "#obras" ? "obras" : "inicio";
 
   return (
     <div
@@ -27,7 +28,7 @@ export default function App() {
       {/* Cabecera superpuesta */}
       <header className="absolute inset-x-0 top-0 z-20 flex items-baseline justify-between px-6 py-6 md:px-10">
         <a
-          href="#obras"
+          href="#inicio"
           className="font-serif text-lg lowercase tracking-wide text-gray-900 no-underline"
         >
           josé subiabre

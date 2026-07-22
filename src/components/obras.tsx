@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Gallery4, type Gallery4Item } from "@/components/ui/gallery4";
-import { IMAGES, titleFromSrc } from "@/lib/obras-data";
 
-const items: Gallery4Item[] = IMAGES.map((src) => ({
-  id: src,
-  title: titleFromSrc(src),
-  description: "",
-  href: src,
-  image: src,
-}));
+// Galería de obras — aún sin contenido.
+// Para añadir una tarjeta: pon la imagen en public/obras/ y agrega aquí:
+//   { id: "mi-obra", title: "Mi obra", description: "Texto de la tarjeta",
+//     href: "obras/Mi_Obra.jpg", image: "obras/Mi_Obra.jpg" },
+const items: Gallery4Item[] = [];
 
 export default function Obras() {
   const [selected, setSelected] = useState<Gallery4Item | null>(null);
@@ -30,6 +27,12 @@ export default function Obras() {
         items={items}
         onItemClick={setSelected}
       />
+
+      {items.length === 0 && (
+        <p className="px-6 pb-32 text-center text-sm text-gray-400 md:px-10">
+          próximamente
+        </p>
+      )}
 
       {/* Vista expandida */}
       <AnimatePresence>
