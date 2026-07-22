@@ -76,12 +76,12 @@ function FlipCard({
 
                 {/* Back Face */}
                 <div
-                    className="absolute inset-0 h-full w-full overflow-hidden rounded-xl shadow-lg bg-gray-900 flex flex-col items-center justify-center p-4 border border-gray-700"
+                    className="absolute inset-0 h-full w-full overflow-hidden rounded-xl shadow-lg bg-[#312F2D] flex flex-col items-center justify-center p-4"
                     style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
                 >
                     <div className="text-center">
-                        <p className="text-[8px] font-bold text-blue-400 uppercase tracking-widest mb-1">Ver</p>
-                        <p className="text-xs font-medium text-white">Obra</p>
+                        <p className="text-[8px] font-bold text-[#B8B8B8] uppercase tracking-widest mb-1">Ver</p>
+                        <p className="text-xs font-medium text-[#F7F5F2]">Obra</p>
                     </div>
                 </div>
             </motion.div>
