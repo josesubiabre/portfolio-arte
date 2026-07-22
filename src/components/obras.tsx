@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Gallery4, type Gallery4Item } from "@/components/ui/gallery4";
 
@@ -65,9 +65,24 @@ export default function Obras() {
   const [selected, setSelected] = useState<Gallery4Item | null>(null);
   const musicEmbed = selected?.music ? toEmbed(selected.music) : null;
 
+  // Navega a la obra anterior (-1) o siguiente (+1), en forma circular
+  const navigate = (dir: number) => {
+    setSelected((prev) => {
+      if (!prev) return prev;
+      const index = items.findIndex((item) => item.id === prev.id);
+      return items[(index + dir + items.length) % items.length];
+    });
+  };
+
+  // Swipe horizontal en la vista expandida (una navegación por gesto)
+  const touchStartX = useRef(0);
+  const swipeHandled = useRef(false);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setSelected(null);
+      if (e.key === "ArrowRight") navigate(1);
+      if (e.key === "ArrowLeft") navigate(-1);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -97,6 +112,18 @@ export default function Obras() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             onClick={() => setSelected(null)}
+            onTouchStart={(e) => {
+              touchStartX.current = e.touches[0].clientX;
+              swipeHandled.current = false;
+            }}
+            onTouchMove={(e) => {
+              if (swipeHandled.current) return;
+              const deltaX = e.touches[0].clientX - touchStartX.current;
+              if (Math.abs(deltaX) > 60) {
+                swipeHandled.current = true;
+                navigate(deltaX < 0 ? 1 : -1); // swipe a la izquierda → siguiente
+              }
+            }}
             className="fixed inset-0 z-30 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm cursor-zoom-out md:p-10"
           >
             <motion.figure
@@ -107,9 +134,13 @@ export default function Obras() {
               onClick={(e) => e.stopPropagation()}
               className="relative m-0 max-h-full max-w-full cursor-default"
             >
-              <img
+              <motion.img
+                key={selected.id}
                 src={selected.image}
                 alt={selected.title}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.2 }}
                 className="max-h-[80vh] max-w-full rounded-2xl object-contain shadow-2xl"
               />
               {musicEmbed && (
@@ -141,6 +172,30 @@ export default function Obras() {
                 </button>
               </figcaption>
             </motion.figure>
+
+            {/* Zonas táctiles en los bordes: anterior / siguiente */}
+            <button
+              type="button"
+              aria-label="Previous work"
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(-1);
+              }}
+              className="absolute inset-y-0 left-0 z-10 flex w-[18%] max-w-28 items-center justify-start pl-2 text-white/40 transition-colors hover:text-white active:text-white md:pl-4"
+            >
+              <span className="text-4xl leading-none">‹</span>
+            </button>
+            <button
+              type="button"
+              aria-label="Next work"
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(1);
+              }}
+              className="absolute inset-y-0 right-0 z-10 flex w-[18%] max-w-28 items-center justify-end pr-2 text-white/40 transition-colors hover:text-white active:text-white md:pr-4"
+            >
+              <span className="text-4xl leading-none">›</span>
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
