@@ -304,7 +304,7 @@ export default function IntroAnimation() {
                         initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
                         animate={introPhase === "circle" && morphValue < 0.5 ? { opacity: 1 - morphValue * 2, y: 0, filter: "blur(0px)" } : { opacity: 0, filter: "blur(10px)" }}
                         transition={{ duration: 1 }}
-                        className="px-6 text-lg font-medium tracking-tight text-gray-800 sm:text-2xl md:text-4xl"
+                        className="px-6 text-lg font-medium tracking-tight text-gray-800 sm:text-2xl md:text-3xl"
                     >
                         photography · art · music
                     </motion.h1>
