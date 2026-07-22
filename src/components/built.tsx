@@ -33,7 +33,7 @@ const PROYECTOS = [
 export default function Built() {
   return (
     <section className="relative w-full overflow-hidden">
-      <main className="mx-auto flex min-h-dvh w-full max-w-6xl flex-col justify-center px-4 pb-[10vh] pt-28 sm:px-6 lg:px-8">
+      <main className="mx-auto flex min-h-dvh w-full max-w-6xl flex-col justify-center px-4 pb-[10vh] pt-28 sm:px-6 lg:px-8 max-lg:justify-start">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
           {/* Columna izquierda — título */}
           <motion.div
