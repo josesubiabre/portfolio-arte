@@ -133,7 +133,14 @@ export default function SobreMi() {
             className="relative lg:col-span-5"
           >
             <div className="flex flex-col items-center lg:items-end">
-              <div className="relative h-[340px] w-[240px]">
+              <button
+                type="button"
+                onClick={() =>
+                  setCurrentPhotoIndex((currentPhotoIndex + 1) % FOTOS.length)
+                }
+                className="relative h-[340px] w-[240px] cursor-pointer"
+                aria-label="Siguiente foto"
+              >
                 {FOTOS.map((foto, index) => (
                   <div
                     key={foto.src}
@@ -145,7 +152,7 @@ export default function SobreMi() {
                     />
                   </div>
                 ))}
-              </div>
+              </button>
 
               <div className="mt-6 lg:mr-[88px]">
                 <PaginationDots
