@@ -292,18 +292,12 @@ export default function IntroAnimation() {
                         initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
                         animate={introPhase === "circle" && morphValue < 0.5 ? { opacity: 1 - morphValue * 2, y: 0, filter: "blur(0px)" } : { opacity: 0, filter: "blur(10px)" }}
                         transition={{ duration: 1 }}
-                        className="text-2xl font-medium tracking-tight text-gray-800 md:text-4xl"
+                        className="flex flex-col items-center text-2xl font-medium leading-snug tracking-tight text-gray-800 md:text-4xl"
                     >
-                        Fotografía, video y pintura desde el sur del mundo.
+                        <span>un</span>
+                        <span>poco de</span>
+                        <span>todo</span>
                     </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={introPhase === "circle" && morphValue < 0.5 ? { opacity: 0.5 - morphValue } : { opacity: 0 }}
-                        transition={{ duration: 1, delay: 0.2 }}
-                        className="mt-4 text-xs font-bold tracking-[0.2em] text-gray-500"
-                    >
-                        DESPLÁZATE PARA EXPLORAR
-                    </motion.p>
                 </div>
 
                 {/* Arc Active Content (Fades in) */}

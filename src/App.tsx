@@ -5,10 +5,16 @@ export default function App() {
     <div className="relative h-dvh w-full overflow-hidden">
       {/* Cabecera superpuesta */}
       <header className="absolute inset-x-0 top-0 z-20 flex items-baseline justify-between px-6 py-6 md:px-10">
-        <div className="font-serif text-lg tracking-wide text-gray-900">
-          José Subiabre
+        <div className="font-serif text-lg lowercase tracking-wide text-gray-900">
+          josé subiabre
         </div>
         <nav className="flex gap-7 text-[0.72rem] font-medium uppercase tracking-[0.14em] text-gray-500">
+          <a href="#obras" className="transition-colors hover:text-blue-700">
+            Obras
+          </a>
+          <a href="#sobre-mi" className="transition-colors hover:text-blue-700">
+            Sobre mí
+          </a>
           <a
             href="mailto:subiabreji@gmail.com"
             className="transition-colors hover:text-blue-700"
