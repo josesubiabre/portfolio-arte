@@ -92,7 +92,7 @@ export default function Obras() {
     <main className="pt-14">
       <Gallery4
         title="works"
-        description="photography · art · music"
+        description="a small archive of things made with images, sound, and code."
         items={items}
         onItemClick={setSelected}
       />
