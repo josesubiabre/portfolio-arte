@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Gallery4, type Gallery4Item } from "@/components/ui/gallery4";
 
 // Galería de obras — aún sin contenido.
-// Para añadir una tarjeta: pon la imagen en public/obras/ y agrega aquí:
+// Para añadir una tarjeta: pon la imagen en public/photos/ y agrega aquí:
 //   { id: "mi-obra", title: "Mi obra", description: "Texto de la tarjeta",
-//     href: "obras/Mi_Obra.jpg", image: "obras/Mi_Obra.jpg" },
+//     href: "photos/Mi_Obra.jpg", image: "photos/Mi_Obra.jpg" },
 const items: Gallery4Item[] = [];
 
 export default function Obras() {

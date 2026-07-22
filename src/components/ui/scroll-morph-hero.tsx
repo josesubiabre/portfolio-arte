@@ -285,8 +285,8 @@ export default function IntroAnimation() {
                         Explora la obra
                     </h2>
                     <p className="text-sm md:text-base text-gray-600 max-w-lg leading-relaxed">
-                        Una selección de trabajos personales: imágenes fijas, piezas en movimiento <br className="hidden md:block" />
-                        y obra sobre tela. Sigue desplazándote para recorrer la colección.
+                        Una selección de trabajos personales. <br className="hidden md:block" />
+                        Desplázate para recorrer la selección.
                     </p>
                 </motion.div>
 
