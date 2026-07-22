@@ -22,15 +22,15 @@ export default function Obras() {
   return (
     <main className="pt-14">
       <Gallery4
-        title="obras"
-        description="fotografía · arte · música"
+        title="works"
+        description="photography · art · music"
         items={items}
         onItemClick={setSelected}
       />
 
       {items.length === 0 && (
         <p className="px-6 pb-32 text-center text-sm text-gray-400 md:px-10">
-          próximamente
+          coming soon
         </p>
       )}
 
@@ -64,7 +64,7 @@ export default function Obras() {
                   onClick={() => setSelected(null)}
                   className="text-xs uppercase tracking-[0.14em] text-white/70 transition-colors hover:text-white"
                 >
-                  Cerrar ✕
+                  Close ✕
                 </button>
               </figcaption>
             </motion.figure>

@@ -35,16 +35,16 @@ export default function App() {
         </a>
         <nav className="flex gap-7 text-[0.72rem] font-medium uppercase tracking-[0.14em] text-gray-500">
           <a href="#obras" className="transition-colors hover:text-blue-700">
-            Obras
+            Works
           </a>
           <a href="#sobre-mi" className="transition-colors hover:text-blue-700">
-            Sobre mí
+            About
           </a>
           <a
             href="mailto:subiabreji@gmail.com"
             className="transition-colors hover:text-blue-700"
           >
-            Contacto
+            Contact
           </a>
         </nav>
       </header>

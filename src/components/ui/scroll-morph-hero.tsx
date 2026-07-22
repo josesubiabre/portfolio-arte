@@ -68,7 +68,7 @@ function FlipCard({
                 >
                     <img
                         src={src}
-                        alt={`obra-${index}`}
+                        alt={`work-${index}`}
                         className="h-full w-full object-cover"
                     />
                     <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent" />
@@ -80,8 +80,8 @@ function FlipCard({
                     style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
                 >
                     <div className="text-center">
-                        <p className="text-[8px] font-bold text-[#B8B8B8] uppercase tracking-widest mb-1">Ver</p>
-                        <p className="text-xs font-medium text-[#F7F5F2]">Obra</p>
+                        <p className="text-[8px] font-bold text-[#B8B8B8] uppercase tracking-widest mb-1">View</p>
+                        <p className="text-xs font-medium text-[#F7F5F2]">Work</p>
                     </div>
                 </div>
             </motion.div>
@@ -272,7 +272,7 @@ export default function IntroAnimation() {
                         transition={{ duration: 1 }}
                         className="text-2xl font-medium tracking-tight text-gray-800 md:text-4xl"
                     >
-                        fotografía · arte · música
+                        photography · art · music
                     </motion.h1>
                 </div>
 
@@ -282,11 +282,11 @@ export default function IntroAnimation() {
                     className="absolute top-[10%] z-10 flex flex-col items-center justify-center text-center pointer-events-none px-4"
                 >
                     <h2 className="text-3xl md:text-5xl font-semibold text-gray-900 tracking-tight mb-4">
-                        Explora la obra
+                        Explore the work
                     </h2>
                     <p className="text-sm md:text-base text-gray-600 max-w-lg leading-relaxed">
-                        Una selección de trabajos personales. <br className="hidden md:block" />
-                        Desplázate para recorrer la selección.
+                        A selection of personal works. <br className="hidden md:block" />
+                        Scroll to browse the selection.
                     </p>
                 </motion.div>
 
@@ -415,7 +415,7 @@ export default function IntroAnimation() {
                                     onClick={() => setSelected(null)}
                                     className="text-xs uppercase tracking-[0.14em] text-white/70 transition-colors hover:text-white"
                                 >
-                                    Cerrar ✕
+                                    Close ✕
                                 </button>
                             </figcaption>
                         </motion.figure>

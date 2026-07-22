@@ -2,12 +2,15 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
-const INTRO =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.";
-
 const PARRAFOS = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "i was born in santiago, chile. to some, the end of the world. to me, the beginning of it.",
+  <>
+    if there is one word that defines me, it is <strong>builder</strong>. over
+    the years, i’ve worn different hats and explored different ways of making:
+    architecture (and its many branches), music, art, and more recently,
+    technology.
+  </>,
+  "i love building things, trying new tools, and finding new ways to express ideas. sometimes that becomes a piece of art, sometimes a song, sometimes a product. analog or digital, the impulse is usually the same: to make something new.",
 ];
 
 // posicion controla qué parte de la foto se ve dentro del marco:
@@ -15,9 +18,9 @@ const PARRAFOS = [
 //   vertical:   "top"  | "center" | "bottom" | porcentaje ("20%")
 // "50% 50%" es el centro exacto. Si se omite, queda centrada.
 const FOTOS = [
-  { src: "perfil/perfil.jpg", alt: "Retrato de José Subiabre", posicion: "center center" },
-  { src: "perfil/Tambo_Ranco.jpg", alt: "Tambo en el lago Ranco", posicion: "center center" },
-  { src: "perfil/Tambo_Sleepy.jpg", alt: "Tambo durmiendo", posicion: "center center" },
+  { src: "perfil/perfil.jpg", alt: "Portrait of José Subiabre", posicion: "center center" },
+  { src: "perfil/Tambo_Ranco.jpg", alt: "Tambo at Lake Ranco", posicion: "center center" },
+  { src: "perfil/Tambo_Sleepy.jpg", alt: "Tambo sleeping", posicion: "center center" },
 ];
 
 function PolaroidPhoto({
@@ -72,7 +75,7 @@ function PaginationDots({
           className={`h-2 w-2 rounded-full transition-colors duration-200 ${
             index === current ? "bg-black" : "bg-gray-300"
           }`}
-          aria-label={`Ir a la foto ${index + 1}`}
+          aria-label={`Go to photo ${index + 1}`}
         />
       ))}
     </div>
@@ -95,7 +98,7 @@ export default function SobreMi() {
           >
             <div className="flex items-center gap-3">
               <h2 className="font-serif text-xl lowercase tracking-tight text-black sm:text-2xl">
-                sobre mí
+                about
               </h2>
               <ArrowDown className="h-5 w-5 text-black" strokeWidth={1.5} />
             </div>
@@ -109,7 +112,9 @@ export default function SobreMi() {
             className="lg:col-span-5"
           >
             <div className="space-y-6">
-              <p className="text-sm leading-relaxed text-black">{INTRO}</p>
+              <p className="text-sm italic leading-relaxed text-black">
+                “go big, because we all go home” – naval ravikant
+              </p>
 
               {PARRAFOS.map((texto, index) => (
                 <motion.p
@@ -139,7 +144,7 @@ export default function SobreMi() {
                   setCurrentPhotoIndex((currentPhotoIndex + 1) % FOTOS.length)
                 }
                 className="relative h-[340px] w-[240px] cursor-pointer"
-                aria-label="Siguiente foto"
+                aria-label="Next photo"
               >
                 {FOTOS.map((foto, index) => (
                   <div

@@ -27,7 +27,7 @@ export interface Gallery4Props {
 }
 
 const Gallery4 = ({
-  title = "Obras",
+  title = "Works",
   description = "",
   items,
   onItemClick,
@@ -131,7 +131,7 @@ const Gallery4 = ({
                         {item.description}
                       </div>
                       <div className="flex items-center text-sm">
-                        Ver obra{" "}
+                        View work{" "}
                         <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
                       </div>
                     </div>
@@ -149,7 +149,7 @@ const Gallery4 = ({
                 currentSlide === index ? "bg-primary" : "bg-primary/20"
               }`}
               onClick={() => carouselApi?.scrollTo(index)}
-              aria-label={`Ir a la obra ${index + 1}`}
+              aria-label={`Go to work ${index + 1}`}
             />
           ))}
         </div>
