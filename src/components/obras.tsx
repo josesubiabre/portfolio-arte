@@ -151,11 +151,11 @@ export default function Obras() {
                   height={musicEmbed.height}
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
-                  className="mt-3 rounded-xl border-0"
+                  className="relative z-20 mt-3 rounded-xl border-0"
                 />
               )}
 
-              <figcaption className="mt-3 flex items-baseline justify-between gap-4 text-white">
+              <figcaption className="relative z-20 mt-3 flex items-baseline justify-between gap-4 text-white">
                 <span className="flex flex-col">
                   <span className="text-sm font-medium">{selected.title}</span>
                   {selected.description && (

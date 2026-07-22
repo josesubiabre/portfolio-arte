@@ -444,7 +444,7 @@ export default function IntroAnimation() {
                                 transition={{ duration: 0.2 }}
                                 className="max-h-[80vh] max-w-full rounded-2xl object-contain shadow-2xl"
                             />
-                            <figcaption className="mt-3 flex items-baseline justify-between gap-4 text-white">
+                            <figcaption className="relative z-20 mt-3 flex items-baseline justify-between gap-4 text-white">
                                 <span className="text-sm font-medium">
                                     {titleFromSrc(IMAGES[selected])}
                                     <span className="ml-2 text-xs uppercase tracking-[0.14em] text-white/50">
