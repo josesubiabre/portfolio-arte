@@ -345,7 +345,9 @@ export default function IntroAnimation() {
                             const minDimension = Math.min(containerSize.width, containerSize.height);
 
                             // A. Calculate Circle Position
-                            const circleRadius = Math.min(minDimension * 0.35, 350);
+                            // En móvil el círculo es proporcionalmente más grande y las
+                            // tarjetas más chicas para que el hueco central respire
+                            const circleRadius = Math.min(minDimension * (isMobile ? 0.42 : 0.35), 350);
 
                             const circleAngle = (i / TOTAL_IMAGES) * 360;
                             const circleRad = (circleAngle * Math.PI) / 180;
@@ -394,7 +396,7 @@ export default function IntroAnimation() {
                                 x: lerp(circlePos.x, arcPos.x, morphValue),
                                 y: lerp(circlePos.y, arcPos.y, morphValue),
                                 rotation: lerp(circlePos.rotation, arcPos.rotation, morphValue),
-                                scale: lerp(1, arcPos.scale, morphValue),
+                                scale: lerp(isMobile ? 0.7 : 1, arcPos.scale, morphValue),
                                 opacity: 1,
                             };
                         }
