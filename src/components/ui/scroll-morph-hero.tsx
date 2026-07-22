@@ -301,11 +301,9 @@ export default function IntroAnimation() {
                         initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
                         animate={introPhase === "circle" && morphValue < 0.5 ? { opacity: 1 - morphValue * 2, y: 0, filter: "blur(0px)" } : { opacity: 0, filter: "blur(10px)" }}
                         transition={{ duration: 1 }}
-                        className="flex flex-col items-center text-2xl font-medium leading-snug tracking-tight text-gray-800 md:text-4xl"
+                        className="text-2xl font-medium tracking-tight text-gray-800 md:text-4xl"
                     >
-                        <span>un</span>
-                        <span>poco de</span>
-                        <span>todo</span>
+                        fotografía · arte · música
                     </motion.h1>
                 </div>
 
