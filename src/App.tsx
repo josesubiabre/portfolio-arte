@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import IntroAnimation from "@/components/ui/scroll-morph-hero";
 import SobreMi from "@/components/sobre-mi";
+import Obras from "@/components/obras";
 
 export default function App() {
   const [hash, setHash] = useState(window.location.hash);
@@ -11,14 +12,16 @@ export default function App() {
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
-  const enSobreMi = hash === "#sobre-mi";
+  // #obras (y la URL sin hash) es la página principal; el hero queda en #inicio
+  const vista =
+    hash === "#sobre-mi" ? "sobre-mi" : hash === "#inicio" ? "inicio" : "obras";
 
   return (
     <div
       className={
-        enSobreMi
-          ? "relative min-h-dvh w-full bg-[#FAFAFA]"
-          : "relative h-dvh w-full overflow-hidden"
+        vista === "inicio"
+          ? "relative h-dvh w-full overflow-hidden"
+          : "relative min-h-dvh w-full bg-[#FAFAFA]"
       }
     >
       {/* Cabecera superpuesta */}
@@ -45,7 +48,13 @@ export default function App() {
         </nav>
       </header>
 
-      {enSobreMi ? <SobreMi /> : <IntroAnimation />}
+      {vista === "sobre-mi" ? (
+        <SobreMi />
+      ) : vista === "inicio" ? (
+        <IntroAnimation />
+      ) : (
+        <Obras />
+      )}
     </div>
   );
 }

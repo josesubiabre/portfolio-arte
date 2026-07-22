@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence, useTransform, useSpring, useMotionValue } from "framer-motion";
+import { IMAGES, titleFromSrc } from "@/lib/obras-data";
 
 // --- Types ---
 export type AnimationPhase = "scatter" | "line" | "circle" | "bottom-strip";
@@ -91,35 +92,7 @@ function FlipCard({
 // --- Main Hero Component ---
 const MAX_SCROLL = 3000; // Virtual scroll range
 
-// Obras (public/obras/)
-const IMAGES = [
-    "obras/Farellones.jpg",
-    "obras/Flores_Recicladas.jpg",
-    "obras/Formigal.jpg",
-    "obras/La_Parva_Japan.jpg",
-    "obras/La_Reina_De_Babilonia.jpg",
-    "obras/Lagos_Auto.jpg",
-    "obras/Madrid_Manuel_Becerra.jpg",
-    "obras/Madrid_Retiro.jpg",
-    "obras/Mendocino_Fungi.jpg",
-    "obras/Morocco_Fruits.jpg",
-    "obras/Morocco_Jars.jpg",
-    "obras/Morocco_Marrakesh.jpg",
-    "obras/Morocco_Marrakesh_Inside.jpg",
-    "obras/Morocco_Moto.jpg",
-    "obras/Morocco_Pray.jpg",
-    "obras/Papa_Muir_Woods.jpg",
-    "obras/San_Francisco_Marina.jpg",
-    "obras/San_Francisco_Marina_dia.jpg",
-    "obras/Tenerife_Airport.jpg",
-    "obras/Tenerife_Los_Gigantes.jpg",
-];
-
 const TOTAL_IMAGES = IMAGES.length;
-
-// "obras/La_Reina_De_Babilonia.jpg" -> "La Reina De Babilonia"
-const titleFromSrc = (src: string) =>
-    src.split("/").pop()!.replace(/\.[^.]+$/, "").replace(/_/g, " ");
 
 // Helper for linear interpolation
 const lerp = (start: number, end: number, t: number) => start * (1 - t) + end * t;
