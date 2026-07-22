@@ -8,20 +8,23 @@ const INTRO =
 const PARRAFOS = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  "Fotografía, viajes, pintura, momentos — al final, esto es simplemente un poco de todo.",
 ];
 
+// posicion controla qué parte de la foto se ve dentro del marco:
+//   horizontal: "left" | "center" | "right" | porcentaje ("30%")
+//   vertical:   "top"  | "center" | "bottom" | porcentaje ("20%")
+// "50% 50%" es el centro exacto. Si se omite, queda centrada.
 const FOTOS = [
-  { src: "perfil/perfil.jpg", alt: "Retrato de José Subiabre" },
-  { src: "perfil/Tambo_Ranco.jpg", alt: "Tambo en el lago Ranco" },
-  { src: "perfil/Tambo_Sleepy.jpg", alt: "Tambo durmiendo" },
+  { src: "perfil/perfil.jpg", alt: "Retrato de José Subiabre", posicion: "center top" },
+  { src: "perfil/Tambo_Ranco.jpg", alt: "Tambo en el lago Ranco", posicion: "center center" },
+  { src: "perfil/Tambo_Sleepy.jpg", alt: "Tambo durmiendo", posicion: "center center" },
 ];
 
 function PolaroidPhoto({
   foto,
   isActive,
 }: {
-  foto: { src: string; alt: string };
+  foto: { src: string; alt: string; posicion?: string };
   isActive: boolean;
 }) {
   return (
@@ -41,6 +44,7 @@ function PolaroidPhoto({
                 src={foto.src}
                 alt={foto.alt}
                 className="h-full w-full object-cover"
+                style={{ objectPosition: foto.posicion ?? "center" }}
               />
             </div>
           </div>
