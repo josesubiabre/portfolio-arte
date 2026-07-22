@@ -45,16 +45,19 @@ Todo está en `index.html`:
 - **Correo de contacto**: sección `#contacto`.
 - **Color de acento**: variable `--acento` al inicio del `<style>`.
 
-## Publicar gratis en internet (GitHub Pages)
+## Publicar en internet (GitHub Pages)
+
+El despliegue es automático: cada `git push` a `main` ejecuta el workflow de
+GitHub Actions (`.github/workflows/deploy.yml`), que compila la app con Vite y
+publica `dist/` en `https://josesubiabre.github.io/portfolio-arte/`.
+
+Para publicar cambios:
 
 ```bash
-cd portfolio-arte
-git init
 git add .
-git commit -m "Primera versión del portafolio"
-gh repo create portfolio-arte --public --source . --push
-gh api repos/{owner}/portfolio-arte/pages -f "source[branch]=main" -f "source[path]=/"
+git commit -m "descripción del cambio"
+git push
 ```
 
-Quedará en `https://<tu-usuario>.github.io/portfolio-arte/` a los pocos minutos.
-Cada vez que cambies algo: `git add . && git commit -m "..." && git push`.
+A los 1–2 minutos el sitio queda actualizado. El portafolio clásico queda en
+`https://josesubiabre.github.io/portfolio-arte/portafolio-clasico.html`.
