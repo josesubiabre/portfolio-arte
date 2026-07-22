@@ -13,7 +13,7 @@ const items: Gallery4Item[] = [
     description: "JOTD · an AI music project",
     href: "works/tokyo_afterglow.png",
     image: "works/tokyo_afterglow.png",
-    spotify: "https://open.spotify.com/album/0EvRNQW89ciMf4Av9i9brh",
+    music: "https://open.spotify.com/album/0EvRNQW89ciMf4Av9i9brh",
   },
   {
     id: "perdidos",
@@ -21,7 +21,7 @@ const items: Gallery4Item[] = [
     description: "JOTD · an AI music project",
     href: "works/perdidos.png",
     image: "works/perdidos.png",
-    spotify: "https://open.spotify.com/album/4FmkRi1IEvt3G0PX7i2oaA",
+    music: "https://open.spotify.com/album/4FmkRi1IEvt3G0PX7i2oaA",
   },
   {
     id: "la-parva-japan",
@@ -46,8 +46,24 @@ const items: Gallery4Item[] = [
   },
 ];
 
+// Convierte un enlace normal de Spotify o Suno al formato embebible del reproductor
+function toEmbed(url: string): { src: string; height: number } | null {
+  if (url.includes("open.spotify.com/"))
+    return {
+      src: url.replace("open.spotify.com/", "open.spotify.com/embed/").split("?")[0],
+      height: 80,
+    };
+  if (url.includes("suno.com/song/"))
+    return {
+      src: url.replace("suno.com/song/", "suno.com/embed/").split("?")[0],
+      height: 240,
+    };
+  return null;
+}
+
 export default function Obras() {
   const [selected, setSelected] = useState<Gallery4Item | null>(null);
+  const musicEmbed = selected?.music ? toEmbed(selected.music) : null;
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -96,14 +112,12 @@ export default function Obras() {
                 alt={selected.title}
                 className="max-h-[80vh] max-w-full rounded-2xl object-contain shadow-2xl"
               />
-              {selected.spotify && (
+              {musicEmbed && (
                 <iframe
-                  src={selected.spotify
-                    .replace("open.spotify.com/", "open.spotify.com/embed/")
-                    .split("?")[0]}
-                  title={`Spotify: ${selected.title}`}
+                  src={musicEmbed.src}
+                  title={`Player: ${selected.title}`}
                   width="100%"
-                  height="80"
+                  height={musicEmbed.height}
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
                   className="mt-3 rounded-xl border-0"
