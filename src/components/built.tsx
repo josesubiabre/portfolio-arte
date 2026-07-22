@@ -9,7 +9,7 @@ const PROYECTOS = [
     description:
       "a personal health wallet for organizing medical history in Chile.",
     label: "view project",
-    href: "",
+    href: "https://www.mivitae.cl/",
   },
   {
     name: "TechNews Robot",

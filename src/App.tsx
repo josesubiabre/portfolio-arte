@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import IntroAnimation from "@/components/ui/scroll-morph-hero";
 import SobreMi from "@/components/sobre-mi";
 import Obras from "@/components/obras";
+import Built from "@/components/built";
 
 export default function App() {
   const [hash, setHash] = useState(window.location.hash);
@@ -13,9 +14,15 @@ export default function App() {
   }, []);
 
   // La página principal (sin hash o #inicio) es el hero animado;
-  // #obras muestra la galería carrusel y #sobre-mi la biografía
+  // #obras muestra la galería carrusel, #built los proyectos y #sobre-mi la biografía
   const vista =
-    hash === "#sobre-mi" ? "sobre-mi" : hash === "#obras" ? "obras" : "inicio";
+    hash === "#sobre-mi"
+      ? "sobre-mi"
+      : hash === "#obras"
+        ? "obras"
+        : hash === "#built"
+          ? "built"
+          : "inicio";
 
   return (
     <div
@@ -37,6 +44,9 @@ export default function App() {
           <a href="#obras" className="transition-colors hover:text-blue-700">
             Works
           </a>
+          <a href="#built" className="transition-colors hover:text-blue-700">
+            Built
+          </a>
           <a href="#sobre-mi" className="transition-colors hover:text-blue-700">
             About
           </a>
@@ -51,6 +61,8 @@ export default function App() {
 
       {vista === "sobre-mi" ? (
         <SobreMi />
+      ) : vista === "built" ? (
+        <Built />
       ) : vista === "inicio" ? (
         <IntroAnimation />
       ) : (
