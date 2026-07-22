@@ -1,29 +1,32 @@
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 
-// Proyectos y productos. Cuando haya link real, completa href;
-// si href queda vacío, la acción se muestra apagada y sin click.
+// Proyectos y productos. Cada uno puede tener varios links (view project,
+// view code, etc.); si un href queda vacío, esa acción se muestra apagada
+// y sin click. stack es opcional: línea de tecnologías bajo la descripción.
 const PROYECTOS = [
   {
     name: "MiVitae",
     description:
       "a personal health wallet for organizing medical history in Chile.",
-    label: "view project",
-    href: "https://www.mivitae.cl/",
+    stack: "",
+    links: [{ label: "view project", href: "https://www.mivitae.cl/" }],
   },
   {
     name: "TechNews Robot",
-    description:
-      "an automated morning digest that sends tech updates through WhatsApp.",
-    label: "view project",
-    href: "",
+    description: "a small automation that reads tech news before i do.",
+    stack: "Python · GitHub Actions · AI summaries · WhatsApp",
+    links: [
+      { label: "view project", href: "" },
+      { label: "view code", href: "https://github.com/josesubiabre/morning-tech-digest" },
+    ],
   },
   {
     name: "PARA NONNA",
     description:
       "an early-stage product and brand exploring everyday objects for older adults.",
-    label: "view project",
-    href: "",
+    stack: "",
+    links: [{ label: "view project", href: "" }],
   },
 ];
 
@@ -67,25 +70,40 @@ export default function Built() {
                   <span className="w-44 shrink-0 text-sm font-medium text-black">
                     {proyecto.name}
                   </span>
-                  <span className="flex-1 text-sm leading-relaxed text-gray-700">
-                    {proyecto.description}
-                  </span>
-                  {proyecto.href ? (
-                    <a
-                      href={proyecto.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex shrink-0 items-center gap-1 text-sm text-black transition-colors hover:text-blue-700"
-                    >
-                      {proyecto.label}
-                      <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
-                    </a>
-                  ) : (
-                    <span className="flex shrink-0 items-center gap-1 text-sm text-gray-300">
-                      {proyecto.label}
-                      <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+                  <span className="flex-1">
+                    <span className="block text-sm leading-relaxed text-gray-700">
+                      {proyecto.description}
                     </span>
-                  )}
+                    {proyecto.stack && (
+                      <span className="mt-1 block text-xs text-gray-400">
+                        {proyecto.stack}
+                      </span>
+                    )}
+                  </span>
+                  <span className="flex shrink-0 items-center gap-5">
+                    {proyecto.links.map((link) =>
+                      link.href ? (
+                        <a
+                          key={link.label}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1 text-sm text-black transition-colors hover:text-blue-700"
+                        >
+                          {link.label}
+                          <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+                        </a>
+                      ) : (
+                        <span
+                          key={link.label}
+                          className="flex items-center gap-1 text-sm text-gray-300"
+                        >
+                          {link.label}
+                          <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+                        </span>
+                      ),
+                    )}
+                  </span>
                 </li>
               ))}
             </ul>
