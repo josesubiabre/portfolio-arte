@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import { motion, useTransform, useSpring, useMotionValue } from "framer-motion";
+import { motion, AnimatePresence, useTransform, useSpring, useMotionValue } from "framer-motion";
 
 // --- Types ---
 export type AnimationPhase = "scatter" | "line" | "circle" | "bottom-strip";
@@ -12,6 +12,7 @@ interface FlipCardProps {
     total: number;
     phase: AnimationPhase;
     target: { x: number; y: number; rotation: number; scale: number; opacity: number };
+    onSelect: () => void;
 }
 
 // --- FlipCard Component ---
@@ -24,9 +25,11 @@ function FlipCard({
     total,
     phase,
     target,
+    onSelect,
 }: FlipCardProps) {
     return (
         <motion.div
+            onClick={onSelect}
             // Smoothly animate to the coordinates defined by the parent
             animate={{
                 x: target.x,
@@ -121,6 +124,19 @@ export default function IntroAnimation() {
     const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
     const containerRef = useRef<HTMLDivElement>(null);
 
+    // --- Selected Image (expanded view) ---
+    const [selected, setSelected] = useState<number | null>(null);
+    const selectedRef = useRef<number | null>(null);
+    selectedRef.current = selected;
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") setSelected(null);
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, []);
+
     // --- Container Size ---
     useEffect(() => {
         if (!containerRef.current) return;
@@ -158,6 +174,9 @@ export default function IntroAnimation() {
             // Prevent default to stop browser overscroll/bounce
             e.preventDefault();
 
+            // Pause virtual scroll while an image is expanded
+            if (selectedRef.current !== null) return;
+
             const newScroll = Math.min(Math.max(scrollRef.current + e.deltaY, 0), MAX_SCROLL);
             scrollRef.current = newScroll;
             virtualScroll.set(newScroll);
@@ -172,6 +191,8 @@ export default function IntroAnimation() {
             const touchY = e.touches[0].clientY;
             const deltaY = touchStartY - touchY;
             touchStartY = touchY;
+
+            if (selectedRef.current !== null) return;
 
             const newScroll = Math.min(Math.max(scrollRef.current + deltaY, 0), MAX_SCROLL);
             scrollRef.current = newScroll;
@@ -382,11 +403,55 @@ export default function IntroAnimation() {
                                 total={TOTAL_IMAGES}
                                 phase={introPhase} // Pass intro phase for initial animations
                                 target={target}
+                                onSelect={() => setSelected(i)}
                             />
                         );
                     })}
                 </div>
             </div>
+
+            {/* Expanded Image Overlay */}
+            <AnimatePresence>
+                {selected !== null && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        onClick={() => setSelected(null)}
+                        className="absolute inset-0 z-30 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 md:p-10 cursor-zoom-out"
+                    >
+                        <motion.figure
+                            initial={{ scale: 0.4, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.4, opacity: 0 }}
+                            transition={{ type: "spring", stiffness: 220, damping: 26 }}
+                            onClick={(e) => e.stopPropagation()}
+                            className="relative m-0 max-h-full max-w-full cursor-default"
+                        >
+                            <img
+                                src={IMAGES[selected].replace("w=300", "w=1200")}
+                                alt={`obra-${selected}`}
+                                className="max-h-[80vh] max-w-full rounded-2xl object-contain shadow-2xl"
+                            />
+                            <figcaption className="mt-3 flex items-baseline justify-between gap-4 text-white">
+                                <span className="text-sm font-medium">
+                                    Obra {selected + 1}
+                                    <span className="ml-2 text-xs uppercase tracking-[0.14em] text-white/50">
+                                        {selected + 1} / {TOTAL_IMAGES}
+                                    </span>
+                                </span>
+                                <button
+                                    onClick={() => setSelected(null)}
+                                    className="text-xs uppercase tracking-[0.14em] text-white/70 transition-colors hover:text-white"
+                                >
+                                    Cerrar ✕
+                                </button>
+                            </figcaption>
+                        </motion.figure>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }
