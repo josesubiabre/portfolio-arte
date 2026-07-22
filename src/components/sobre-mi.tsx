@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 
 const PARRAFOS = [
   "i was born in santiago, chile. to some, the end of the world. to me, the beginning of it.",
@@ -11,6 +11,30 @@ const PARRAFOS = [
     technology.
   </>,
   "i love building things, trying new tools, and finding new ways to express ideas. sometimes that becomes a piece of art, sometimes a song, sometimes a product. analog or digital, the impulse is usually the same: to make something new.",
+];
+
+// Archivo de menciones, citas y entrevistas
+const ELSEWHERE = [
+  {
+    source: "BBVA",
+    description:
+      "quoted in an article about architecture, cities, and future ways of living.",
+    label: "read article",
+    href: "https://www.bbva.com/es/sostenibilidad/cosechar-bajo-paneles-solares-los-cultivos-agrovoltaicos-empiezan-a-ver-la-luz/",
+  },
+  {
+    source: "Architecture Thesis",
+    description:
+      "my final architecture thesis, developed at Pontificia Universidad Católica de Chile.",
+    label: "view thesis",
+    href: "https://repositorio.uc.cl/handle/11534/26961",
+  },
+  {
+    source: "City Tour",
+    description: "a short interview before presenting my thesis project.",
+    label: "watch video",
+    href: "https://www.facebook.com/watch/?v=314418786034435&t=750",
+  },
 ];
 
 // posicion controla qué parte de la foto se ve dentro del marco:
@@ -167,6 +191,60 @@ export default function SobreMi() {
                 />
               </div>
             </div>
+          </motion.div>
+        </div>
+
+        {/* Sección elsewhere — menciones y archivo */}
+        <div className="mt-28 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="lg:col-span-2"
+          >
+            <div className="flex items-center gap-3">
+              <h2 className="font-serif text-xl lowercase tracking-tight text-black sm:text-2xl">
+                elsewhere
+              </h2>
+              <ArrowDown className="h-5 w-5 text-black" strokeWidth={1.5} />
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="lg:col-span-10"
+          >
+            <p className="text-sm leading-relaxed text-gray-700">
+              a small archive of places where my work has been mentioned,
+              cited, or documented.
+            </p>
+
+            <ul className="mt-8 divide-y divide-gray-200 border-b border-gray-200">
+              {ELSEWHERE.map((item) => (
+                <li
+                  key={item.source}
+                  className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6"
+                >
+                  <span className="w-44 shrink-0 text-sm font-medium text-black">
+                    {item.source}
+                  </span>
+                  <span className="flex-1 text-sm leading-relaxed text-gray-700">
+                    {item.description}
+                  </span>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex shrink-0 items-center gap-1 text-sm text-black transition-colors hover:text-blue-700"
+                  >
+                    {item.label}
+                    <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </motion.div>
         </div>
       </main>
