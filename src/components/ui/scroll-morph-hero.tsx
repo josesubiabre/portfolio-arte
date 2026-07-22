@@ -93,6 +93,7 @@ const MAX_SCROLL = 3000; // Virtual scroll range
 
 // Obras (public/obras/)
 const IMAGES = [
+    "obras/Farellones.jpg",
     "obras/Flores_Recicladas.jpg",
     "obras/Formigal.jpg",
     "obras/La_Parva_Japan.jpg",
@@ -110,7 +111,6 @@ const IMAGES = [
     "obras/Papa_Muir_Woods.jpg",
     "obras/San_Francisco_Marina.jpg",
     "obras/San_Francisco_Marina_dia.jpg",
-    "obras/Tambo.jpg",
     "obras/Tenerife_Airport.jpg",
     "obras/Tenerife_Los_Gigantes.jpg",
 ];
