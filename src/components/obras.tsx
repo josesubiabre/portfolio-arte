@@ -6,7 +6,24 @@ import { Gallery4, type Gallery4Item } from "@/components/ui/gallery4";
 // Para añadir una tarjeta: pon la imagen en public/photos/ y agrega aquí:
 //   { id: "mi-obra", title: "Mi obra", description: "Texto de la tarjeta",
 //     href: "photos/Mi_Obra.jpg", image: "photos/Mi_Obra.jpg" },
-const items: Gallery4Item[] = [];
+const items: Gallery4Item[] = [
+  {
+    id: "tokyo-afterglow",
+    title: "tokyo afterglow",
+    description: "JOTD",
+    href: "works/tokyo_afterglow.png",
+    image: "works/tokyo_afterglow.png",
+    spotify: "https://open.spotify.com/album/0EvRNQW89ciMf4Av9i9brh", // pega aquí el enlace de Spotify de la canción
+  },
+  {
+    id: "perdidos",
+    title: "perdidos",
+    description: "JOTD",
+    href: "works/perdidos.png",
+    image: "works/perdidos.png",
+    spotify: "https://open.spotify.com/album/4FmkRi1IEvt3G0PX7i2oaA", // pega aquí el enlace de Spotify de la canción
+  },
+];
 
 export default function Obras() {
   const [selected, setSelected] = useState<Gallery4Item | null>(null);
@@ -58,6 +75,20 @@ export default function Obras() {
                 alt={selected.title}
                 className="max-h-[80vh] max-w-full rounded-2xl object-contain shadow-2xl"
               />
+              {selected.spotify && (
+                <iframe
+                  src={selected.spotify
+                    .replace("open.spotify.com/", "open.spotify.com/embed/")
+                    .split("?")[0]}
+                  title={`Spotify: ${selected.title}`}
+                  width="100%"
+                  height="80"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="mt-3 rounded-xl border-0"
+                />
+              )}
+
               <figcaption className="mt-3 flex items-baseline justify-between gap-4 text-white">
                 <span className="text-sm font-medium">{selected.title}</span>
                 <button

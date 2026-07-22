@@ -17,6 +17,8 @@ export interface Gallery4Item {
   description: string;
   href: string;
   image: string;
+  // Enlace a Spotify (open.spotify.com/track/...) — muestra el reproductor en la vista expandida
+  spotify?: string;
 }
 
 export interface Gallery4Props {
