@@ -22,7 +22,7 @@ const ELSEWHERE = [
   {
     source: "BBVA",
     description:
-      "quoted in an article about architecture, cities, and future ways of living.",
+      "cited in a BBVA article on agrovoltaics, solar energy, and cultivating under solar panels.",
     label: "read article",
     href: "https://www.bbva.com/es/sostenibilidad/cosechar-bajo-paneles-solares-los-cultivos-agrovoltaicos-empiezan-a-ver-la-luz/",
   },
