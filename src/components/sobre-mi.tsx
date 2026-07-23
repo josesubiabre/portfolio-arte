@@ -27,16 +27,16 @@ const ELSEWHERE = [
     href: "https://www.bbva.com/es/sostenibilidad/cosechar-bajo-paneles-solares-los-cultivos-agrovoltaicos-empiezan-a-ver-la-luz/",
   },
   {
-    source: "Architecture Thesis",
+    source: "Atacama Agrovoltaic Thesis",
     description:
-      "my final architecture thesis, developed at Pontificia Universidad Católica de Chile.",
+      "my final architecture thesis exploring how solar infrastructure could enable agriculture in the Atacama Desert.",
     label: "view thesis",
     href: "https://repositorio.uc.cl/handle/11534/26961",
   },
   {
     source: "City Tour",
     description:
-      "a short interview before presenting my thesis project (interview at 12:30).",
+      "featured on City Tour before presenting my architecture thesis (segment starts at 12:30).",
     label: "watch video",
     href: "https://www.facebook.com/watch/?v=314418786034435&t=750",
   },
@@ -151,7 +151,7 @@ export default function SobreMi() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-                  className="text-sm leading-relaxed text-gray-700"
+                  className="text-justify text-sm leading-relaxed text-gray-700"
                 >
                   {texto}
                 </motion.p>
