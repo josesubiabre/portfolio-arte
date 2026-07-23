@@ -5,35 +5,52 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 // Proyectos y productos. Cada uno puede tener varios links (view project,
 // view code, etc.); si un href queda vacío, esa acción se muestra apagada
 // y sin click. stack es opcional: línea de tecnologías bajo la descripción.
-// images (opcional): galería que se abre con "view project" en vez de un link.
-const PROYECTOS = [
+// Un link con gallery: true abre el visor con las images del proyecto
+// (si images está vacío, se muestra apagado hasta que agregues rutas).
+type ProjectLink = { label: string; href?: string; gallery?: boolean };
+
+type Proyecto = {
+  name: string;
+  description: string;
+  stack: string;
+  images: string[];
+  links: ProjectLink[];
+};
+
+const PROYECTOS: Proyecto[] = [
   {
     name: "MiVitae",
     description:
       "a personal health wallet for organizing medical history in Chile.",
     stack: "JavaScript · Supabase · Playwright · Node.js · Vercel",
-    images: [] as string[],
-    links: [{ label: "view project", href: "https://www.mivitae.cl/" }],
+    images: [
+      "built/MiVitae/preview.jpg",
+      "built/MiVitae/MiVitae_Desktop_Examenes_Mock.png",
+    ],
+    links: [
+      { label: "view project", href: "https://www.mivitae.cl/" },
+      { label: "view", gallery: true },
+    ],
   },
   {
     name: "MorningTechDigest",
     description: "a small automation that reads tech news before i do.",
     stack: "Python · GitHub Actions · AI summaries · WhatsApp",
     images: [
-      "built/Product_Tech_News_Digest.png",
-      "built/Tech_News_Digest_Phone.png",
+      "built/TechNewsDigest/Product_Tech_News_Digest.png",
+      "built/TechNewsDigest/Tech_News_Digest_Phone.png",
     ],
     links: [
-      { label: "view project", href: "" },
+      { label: "view project", gallery: true },
       { label: "view code", href: "https://github.com/josesubiabre/morning-tech-digest" },
     ],
   },
   {
-    name: "PARA NONNA",
+    name: "ParaNonna",
     description:
       "an early-stage product and brand exploring everyday objects for older adults.",
     stack: "",
-    images: [] as string[],
+    images: [],
     links: [{ label: "view project", href: "" }],
   },
 ];
@@ -120,8 +137,8 @@ export default function Built() {
                   </span>
                   <span className="flex shrink-0 items-center gap-5">
                     {proyecto.links.map((link) => {
-                      // "view project" con galería de imágenes abre el visor
-                      if (link.label === "view project" && proyecto.images.length > 0) {
+                      // Los links con gallery abren el visor de imágenes
+                      if (link.gallery && proyecto.images.length > 0) {
                         return (
                           <button
                             key={link.label}
