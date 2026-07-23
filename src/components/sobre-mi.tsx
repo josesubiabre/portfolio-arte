@@ -3,13 +3,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 
 const PARRAFOS = [
-  "i was born in santiago, chile. to some, the end of the world. to me, the beginning of it.",
   <>
-    if there is one word that defines me, it is <strong>builder</strong>. over
-    the years, i’ve worn different hats and explored different ways of making:
+    i was born in santiago, chile. if there is one word that defines me, it is{" "}
+    <strong>builder</strong>.
+  </>,
+  <>
+    over the years, i’ve worn different hats and explored different ways of making:
     architecture (and its many branches), music, art, and more recently,
-    technology. after studying architecture in chile, i later completed an MBA
-    at IE Business School, where my work moved closer to products, technology,
+    technology. after studying architecture in chile, i later completed an mba
+    at ie business school, where my work moved closer to products, technology,
     and entrepreneurship.
   </>,
   "i love building things, trying new tools, and finding new ways to express ideas. sometimes that becomes a piece of art, sometimes a song, sometimes a product. analog or digital, the impulse is usually the same: to make something new.",
