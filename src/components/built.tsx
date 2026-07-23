@@ -11,7 +11,7 @@ const PROYECTOS = [
     name: "MiVitae",
     description:
       "a personal health wallet for organizing medical history in Chile.",
-    stack: "",
+    stack: "JavaScript · Supabase · Playwright · Node.js · Vercel",
     images: [] as string[],
     links: [{ label: "view project", href: "https://www.mivitae.cl/" }],
   },
