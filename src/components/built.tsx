@@ -24,8 +24,9 @@ const PROYECTOS: Proyecto[] = [
       "a personal health wallet for organizing medical history in Chile.",
     stack: "JavaScript · Supabase · Playwright · Node.js · Vercel",
     images: [
-      "built/MiVitae/preview.jpg",
       "built/MiVitae/MiVitae_Desktop_Examenes_Mock.png",
+      "built/MiVitae/MiVitae_Phone_Mock.png",
+      "built/MiVitae/MiVitae_Desktop_Examenes.png",
     ],
     links: [
       { label: "view project", href: "https://www.mivitae.cl/" },
